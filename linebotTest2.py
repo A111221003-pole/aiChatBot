@@ -6,6 +6,7 @@ from linebot import  LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import google.generativeai as genai
+import os
 
 line_bot_api = LineBotApi(os.environ.get('Line_bot_token'))
 handler = WebhookHandler(os.environ.get('Line_bot_secret'))
