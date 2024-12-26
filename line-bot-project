@@ -8,16 +8,9 @@ import requests
 # 初始化 Flask 應用程式
 app = Flask(__name__)
 
-# 設定資料庫連結
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:123456@127.0.0.1:5432/linebot_db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
 # Line Bot 設定
-LINE_CHANNEL_ACCESS_TOKEN = '/cuCbOZ42TY8UOVjqSg7L/X2nk955E9emuWqqz6F1Gj2/90Ir0CbWu/jPNexfxFu+NcJmZv5LDbYmrZjwOjZ/PZgGsS4XcxFaYM8NS6hfsaOs+VEzm0/ddZUYh4yLhXRvQ+aRH24ZGcocSr7KezzzAdB04t89/1O/w1cDnyilFU='
-LINE_CHANNEL_SECRET = 'f021ff0c04ee67be09a39d54f1ba7ae6'
-line_bot_api = LineBotApi('/cuCbOZ42TY8UOVjqSg7L/X2nk955E9emuWqqz6F1Gj2/90Ir0CbWu/jPNexfxFu+NcJmZv5LDbYmrZjwOjZ/PZgGsS4XcxFaYM8NS6hfsaOs+VEzm0/ddZUYh4yLhXRvQ+aRH24ZGcocSr7KezzzAdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('f021ff0c04ee67be09a39d54f1ba7ae6')
+line_bot_api = LineBotApi(os.environ.get('Line_bot_token'))
+handler = WebhookHandler(os.environ.get('Line_bot_secret'))
 
 # 定義資料庫模型
 class Todo(db.Model):
